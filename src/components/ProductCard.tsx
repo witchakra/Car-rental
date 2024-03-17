@@ -2,7 +2,7 @@ import styles from './productcard.module.css'
 import Image from 'next/image'
 import InteractiveCard from './InteractiveCard';
 
-export default function ProductCard( {carName,imgSrc} : {carName :string,imgSrc:string}) {
+export default function ProductCard( {carName,imgSrc,onCompare} : {carName :string,imgSrc:string,onCompare:Function}) {
 
     return (
         <InteractiveCard contentName = {carName} >
@@ -10,10 +10,12 @@ export default function ProductCard( {carName,imgSrc} : {carName :string,imgSrc:
                 <Image src ={imgSrc}
                 alt = 'Product Picture'
                 fill={true}
-                className='object-cover rounded-t-lg'
-                />
+                className='object-cover rounded-t-lg'/>
             </div>
-            <div className='w-full h-[30%] p-[10px]'> {carName}</div>
+            <div className='w-full h-[15%] p-[10px]'> {carName}</div>
+            <button className='block h-[10%] text-sm rounded-md bg-sky-600 
+            hover:bg-indigo-600 mx-2 px-1 py-1 text-white shadow-sm' 
+            onClick={(e) => {e.stopPropagation(); onCompare(carName)}}> Compare</button>
         </InteractiveCard>
     );
 }
